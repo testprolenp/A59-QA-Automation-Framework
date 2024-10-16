@@ -23,8 +23,10 @@ public class LoginTests extends BaseTest {
         // Create an instance of the LoginPage & HomePage class below
         // And use them instead of enterEmail() and enterPassword() from BaseTest class.
 
-         LoginPage loginPage = new LoginPage(driver);
-         HomePage homePage = new HomePage(driver);
+         //LoginPage loginPage = new LoginPage(driver);
+         LoginPage loginPage = new LoginPage(getDriver());
+         //HomePage homePage = new HomePage(driver);
+         HomePage homePage = new HomePage(getDriver());
 
         // Step 1 - Login into Koel app
 //        loginPage.login();
@@ -41,9 +43,10 @@ public class LoginTests extends BaseTest {
         Assert.assertTrue(homePage.getUserAvatarIcon().isDisplayed());
     }
 
-    @Test(dataProvider="NegativeLoginTestData")
+    //@Test(dataProvider="NegativeLoginTestData")
     public void negativeLoginTest(String email, String password) throws InterruptedException {
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
+        //LoginPage loginPage = new LoginPage(driver);
         String expectedURL = "https://qa.koel.app/";
 
         // Step -1 // Attempt to log into Koel app using negative data. Unhappy path.
@@ -51,11 +54,12 @@ public class LoginTests extends BaseTest {
         loginPage.providePassword(password);
         loginPage.submitClick();
         // Verify that login attempts have failed via assertion. Login page should still be available
-        Assert.assertEquals(driver.getCurrentUrl(), expectedURL);
+        Assert.assertEquals(getDriver().getCurrentUrl(), expectedURL);
+        //Assert.assertEquals(driver.getCurrentUrl(), expectedURL);
     }
 
 
-    // @Test
+    @Test
     public void loginInvalidEmailValidPassword() throws InterruptedException {
         // navigateToPage() ;
         String expectedURL = "https://qa.koel.app/";
@@ -66,21 +70,54 @@ public class LoginTests extends BaseTest {
 
         Thread.sleep(2000); // Sleep or pause for 2 seconds (adjust as needed)
         // Expected Result
-        Assert.assertEquals(driver.getCurrentUrl(), expectedURL); // https://qa.koel.app/
+        //Assert.assertEquals(driver.getCurrentUrl(), expectedURL); // https://qa.koel.app/
+        Assert.assertEquals(getDriver().getCurrentUrl(), expectedURL); // https://qa.koel.app/
     }
 
-    // @Test
-    //public void loginValidEmailEmptyPassword() throws InterruptedException {
-
-        /*// navigateToPage();
+    @Test
+    public void loginValidEmailInvalidPassword() throws InterruptedException {
+        // navigateToPage() ;
         String expectedURL = "https://qa.koel.app/";
-        enterEmail("leon.poyau+2@testpro.io");
-        submit();
+        LoginPage loginPage = new LoginPage(getDriver());
+        // Steps
+        loginPage.provideEmail("leon.poyau+2@testpro.io");
+        loginPage.providePassword("Ninvalid2Rx");
+        loginPage.submitClick();
 
         Thread.sleep(2000); // Sleep or pause for 2 seconds (adjust as needed)
         // Expected Result
-        Assert.assertEquals(driver.getCurrentUrl(), expectedURL); //https://qa.koel.app/
-
+        //Assert.assertEquals(driver.getCurrentUrl(), expectedURL); // https://qa.koel.app/
+        Assert.assertEquals(getDriver().getCurrentUrl(), expectedURL); // https://qa.koel.app/
     }
-    */
+
+    @Test
+    public void loginValidEmailEmptyPassword() throws InterruptedException {
+        // navigateToPage();
+        LoginPage loginPage = new LoginPage(getDriver());
+
+        String expectedURL = "https://qa.koel.app/";
+        loginPage.provideEmail("leon.poyau+2@testpro.io");
+        loginPage.submitClick();
+
+        Thread.sleep(2000); // Sleep or pause for 2 seconds (adjust as needed)
+        // Expected Result
+        //Assert.assertEquals(driver.getCurrentUrl(), expectedURL); //https://qa.koel.app/
+        Assert.assertEquals(getDriver().getCurrentUrl(), expectedURL); //https://qa.koel.app/
+    }
+
+    @Test
+    public void loginEmptyEmailValidPassword() throws InterruptedException {
+        // navigateToPage();
+        String expectedURL = "https://qa.koel.app/";
+        LoginPage loginPage = new LoginPage(getDriver());
+        loginPage.providePassword("N6wWY2Rx");
+        //enterPassword("N6wWY2Rx");
+        loginPage.submitClick();
+        //submit();
+
+        Thread.sleep(2000); // Sleep or pause for 2 seconds (adjust as needed)
+        // Expected Result
+        //Assert.assertEquals(driver.getCurrentUrl(), expectedURL); //https://qa.koel.app/
+        Assert.assertEquals(getDriver().getCurrentUrl(), expectedURL); //https://qa.koel.app/
+    }
 }
