@@ -76,7 +76,7 @@ public class LoginStepDefinition {
         Assert.assertTrue(homePage.getUserAvatarIcon().isDisplayed());
     }
 
-    /* This validates/verifies that Login fails when doing negative testing*/
+    /* This validates and verifies that Login fails when doing negative testing*/
     @Then("I should not be logged in")
     public void iShouldNotBeLoggedIn() {
         /*HomePage homePage = new HomePage(driver);
