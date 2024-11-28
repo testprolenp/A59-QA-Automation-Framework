@@ -10,6 +10,22 @@
                     <include name="loginValidEmailPassword"/>
                 </methods>
             </class>
+            <class name="HomeTests">
+                <methods>
+                    <include name="hoverOverPlayButtonAndPlaySong"/>
+                    <include name="renamePlaylist"/>
+                </methods>
+            </class>
+            <class name="AllSongsTest">
+                <methods>
+                    <include name="playSongWithRightClick"/>
+                </methods>
+            </class>
+            <class name="ProfileTests">
+                <methods>
+                    <include name="changeProfileName"/>
+                </methods>
+            </class>
         </classes>
     </test>
 </suite>

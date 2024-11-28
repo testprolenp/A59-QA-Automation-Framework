@@ -5,9 +5,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.awt.*;
 import java.util.List;
-
 public class HomeTest extends BaseTest {
     String newPlaylistName = "Sample Edited Playlist";
     @Test
@@ -116,7 +114,7 @@ public class HomeTest extends BaseTest {
     public void choosePlaylistByName(String playlistName) {
 //        WebElement playlist = wait.until(
 //                ExpectedConditions.visibilityOfElementLocated(By.xpath("//section[@id='playlists']//li[4]")));
-                wait.until(ExpectedConditions.visibilityOfElementLocated
+        wait.until(ExpectedConditions.visibilityOfElementLocated
                 (By.xpath("//section[@id='playlists']//a[contains(text(),'"+playlistName+"')]"))).click();
     }
 
