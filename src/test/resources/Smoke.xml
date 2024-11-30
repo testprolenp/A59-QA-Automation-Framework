@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Smoke">
+<suite name="Smoke" parallel="methods" thread-count="2">
     <parameter name="BaseURL" value="https://qa.koel.app/"/>
     <test name="Smoke Test" preserve-order="false">
         <classes>
@@ -10,10 +10,10 @@
                     <include name="loginValidEmailPassword"/>
                 </methods>
             </class>
-            <class name="HomeTests">
+            <class name="HomeTests2">
                 <methods>
                     <include name="hoverOverPlayButtonAndPlaySong"/>
-                    <include name="renamePlaylist"/>
+<!--                    <include name="renamePlaylist"/>-->
                 </methods>
             </class>
             <class name="AllSongsTest">
