@@ -6,14 +6,14 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.List;
-public class HomeTest extends BaseTest {
+public class HomeTests2 extends BaseTest{
     String newPlaylistName = "Sample Edited Playlist";
     @Test
     public void hoverOverPlayButtonAndPlaySong() {
         // Step 1 - Login into Koel App.
         // -- Note - Navigate to Koel app login page already done with BaseTest @BeforeMethod
-        enterEmail("leon.poyau@testpro.io");
-        enterPassword("jTRCkwNf");
+        enterEmail("leon.poyau+2@testpro.io");
+        enterPassword("N6wWY2Rx");
         submit(); // 2-second delay after clicking submit. This is done using Robot class in BaseTest @BeforeMethod
         // Thread.sleep(2000);
 
@@ -32,8 +32,8 @@ public class HomeTest extends BaseTest {
     public void countSongsInPlaylist() {
         // Step 1 - Login into Koel App.
         // -- Note - Navigate to Koel app login page already done with BaseTest @BeforeMethod
-        enterEmail("leon.poyau@testpro.io");
-        enterPassword("jTRCkwNf");
+        enterEmail("leon.poyau+2@testpro.io");
+        enterPassword("N6wWY2Rx");
         submit(); // 2-second delay after clicking submit. This is done using Robot class in BaseTest @BeforeMethod
 
         // Step 2 - Find specific playlist element and click on it to select it. choose a playlist by name
@@ -54,8 +54,8 @@ public class HomeTest extends BaseTest {
         String updatedPlaylistMsg = "Updated playlist \"Sample Edited Playlist.\"";
         // Step 1 - Login
         // -- note - Navigate to Koel app login page already done with BaseTest @BeforeMethod
-        enterEmail("leon.poyau@testpro.io");
-        enterPassword("jTRCkwNf");
+        enterEmail("leon.poyau+2@testpro.io");
+        enterPassword("N6wWY2Rx");
         submit(); // 2-second delay after clicking submit. This is done using Robot class in BaseTest @BeforeMethod
 
         //Thread.sleep(2000);
@@ -92,15 +92,19 @@ public class HomeTest extends BaseTest {
     }
 
     public String getPlaylistInfo() {
-        return driver.findElement(By.cssSelector("span.meta.text-secondary span.meta")).getText();
+        //return driver.findElement(By.cssSelector("span.meta.text-secondary span.meta")).getText();
+        return getDriver().findElement(By.cssSelector("span.meta.text-secondary span.meta")).getText();
     }
 
     public int songsCount() {
-        return driver.findElements(By.cssSelector("section#playlistWrapper td.title")).size();
+        //return driver.findElements(By.cssSelector("section#playlistWrapper td.title")).size();
+        return getDriver().findElements(By.cssSelector("section#playlistWrapper td.title")).size();
     }
 
     public void displayAllSongs() {
-        List<WebElement> songList = driver.findElements
+//        List<WebElement> songList = driver.findElements
+//                (By.cssSelector("section#playlistWrapper td.title"));
+        List<WebElement> songList = getDriver().findElements
                 (By.cssSelector("section#playlistWrapper td.title"));
         // Display Song count
         System.out.println("Number of Songs found: " + songsCount());
@@ -125,7 +129,8 @@ public class HomeTest extends BaseTest {
 
     public WebElement hoverPlay() {
         // Xpath locator //footer[@id='mainFooter']//span[@class='play']
-        WebElement playBtn = driver.findElement(By.cssSelector("[data-testid='play-btn']"));
+        //WebElement playBtn = driver.findElement(By.cssSelector("[data-testid='play-btn']"));
+        WebElement playBtn = getDriver().findElement(By.cssSelector("[data-testid='play-btn']"));
         actions.moveToElement(playBtn).perform();
         return wait.until(ExpectedConditions.visibilityOf(playBtn));
     }
